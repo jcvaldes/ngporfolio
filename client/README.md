@@ -11,3 +11,8 @@ modules: aqui se encuentran los módulos y se trabajan con lazy load
 ## Angular CLI
 
 ng g c core/nabvar --skip-tests --dry-run
+
+## Dependencias
+
+npm i -S -E sweetalert2
+npm i -S -E url-join
