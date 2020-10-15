@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { User } from '@shared/models/user.model';
+import Swal from 'sweetalert2';
+import { SwalService } from '@core/services/swal.service';
 // declare function init_plugins();
 declare var $: any;
 @Component({
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private swalService: SwalService
   ) {
     this.createForms();
   }
@@ -51,9 +54,24 @@ export class LoginComponent implements OnInit {
     };
     this.authService.login(user, true).subscribe((user: User) => {
       debugger
-      console.log(user);
+      // this.swalService.success('Atención', 'usuario logueado', false, true, 2000);
+      // Swal.fire({
+      //   title: 'Atencion',
+      //   text: 'usuario logueado',
+      //   icon: 'error',
+      //   animation: true,
+      //   timer: 2000
+      // });
+      this.router.navigate(['/']);
     }, err => {
-      console.error(err);
+      this.swalService.error('Atención', err.statusText, false, true, 2000);
+      // Swal.fire({
+      //   title: 'Atencion',
+      //   text: err.statusText,
+      //   icon: 'error',
+      //   animation: true,
+      //   timer: 2000
+      // });
     });
   }
 

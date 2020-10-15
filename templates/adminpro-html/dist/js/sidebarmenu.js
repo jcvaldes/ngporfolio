@@ -9,6 +9,7 @@ File: js
 // ============================================================== 
 $(function() {
     "use strict";
+    debugger
      var url = window.location + "";
         var path = url.replace(window.location.protocol + "//" + window.location.host + "/", "");
         var element = $('ul#sidebarnav a').filter(function() {

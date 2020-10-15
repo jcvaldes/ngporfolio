@@ -1,11 +1,12 @@
-// ============================================================== 
+// ==============================================================
 // Template Name: Admin Pro Admin
 // Author: Wrappixel
 // Email: niravjoshi87@gmail.com
 // File: js
-// ============================================================== 
+// ==============================================================
 
 $(function () {
+  debugger
     "use strict";
 
     var body = $("#main-wrapper");
@@ -14,9 +15,9 @@ $(function () {
 
     $('.mini-nav, .sidebar-menu').perfectScrollbar();
 
-    // ============================================================== 
+    // ==============================================================
     // This is for the top header part and sidebar part
-    // ==============================================================  
+    // ==============================================================
 
     var set1 = function () {
         var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
@@ -40,7 +41,7 @@ $(function () {
         $(".nav-toggler i").addClass("ti-close");
     });
 
-    // This is for click on Sidebar open close button 
+    // This is for click on Sidebar open close button
 
     $(".mini-nav > li, #toggle-stylish-sidebar").on('click', function () {
         if (body.hasClass("rmv-sidebarmenu")) {
@@ -58,7 +59,7 @@ $(function () {
         }
     });
 
-    // Sidemenu toggle 
+    // Sidemenu toggle
 
     $(".mini-nav").css("overflow", "hidden").parent().css("overflow", "visible");
     $('#toggle-stylish-sidebar').on("click", function () {
@@ -78,7 +79,7 @@ $(function () {
         $(this).addClass('selected');
     });
 
-    
+
     $(window).resize(function(e) {
         var width = (window.innerWidth > 0) ? window.innerWidth : this.screen.width;
         if (width < 1170) {
@@ -93,7 +94,7 @@ $(function () {
             // Code here
         }
     });
-    // Add or removed class from body 
+    // Add or removed class from body
     if($(window).width() > 1170) {
         $('#toggle-stylish-sidebar').on('click', function () {
             body.toggleClass('mini-sidebar');
@@ -101,11 +102,11 @@ $(function () {
     } else {
         // Code here
     }
-    
 
-    // ============================================================== 
+
+    // ==============================================================
     // Auto select left navbar
-    // ============================================================== 
+    // ==============================================================
     $(function () {
         var url = window.location;
         var element = $('ul.sidebar-menu a').filter(function () {
@@ -120,7 +121,7 @@ $(function () {
         }
     });
 
-    // Sidemenu style 
+    // Sidemenu style
 
     $.sidemenu = function (menu) {
         var animationSpeed = 300;
