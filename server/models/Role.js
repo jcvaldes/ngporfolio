@@ -22,19 +22,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        lowercase: true,
-        trim: true,
-        validate: {
-          isEmail: true,
-        },
-        unique: {
-          args: true,
-          msg: 'El email no esta disponible, elija otro!',
-        },
-      },
       active: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
@@ -55,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'User',
+      modelName: 'Role',
     },
   )
-  return User
+  return Role
 }
