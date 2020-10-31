@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { User } from '@shared/models/user.model';
 import Swal from 'sweetalert2';
 import { SwalService } from '@core/services/swal.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 // declare function init_plugins();
 declare var $: any;
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private swalService: SwalService
+    private swalService: SwalService,
+    private lsService: LocalStorageService
   ) {
     this.createForms();
   }
@@ -27,9 +29,11 @@ export class LoginComponent implements OnInit {
     this.recoverForm();
   }
   createForms() {
+    const email = this.lsService.get('email');
     this.form = new FormGroup({
-      email: new FormControl('idevkingos@gmail.com', Validators.required),
+      email: new FormControl(email ? email : null, Validators.required),
       password: new FormControl('123456', Validators.required),
+      remember: new FormControl(email ? true : false )
     });
   }
 
@@ -52,7 +56,8 @@ export class LoginComponent implements OnInit {
       email: this.form.get('email').value,
       password: this.form.get('password').value
     };
-    this.authService.login(user, true).subscribe((user: User) => {
+    debugger
+    this.authService.login(user, this.form.get('remember').value).subscribe((user: any) => {
       debugger
       // this.swalService.success('Atención', 'usuario logueado', false, true, 2000);
       // Swal.fire({

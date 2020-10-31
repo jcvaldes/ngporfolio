@@ -7,17 +7,22 @@ import { HttpService } from '@core/services/http.service';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { environment } from '@env';
 import { User } from '@shared/models/user.model';
+import { SessionStorageService } from '../services/session-storage.service';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   url: string;
+  token: string;
+  user: User;
   constructor(
     private httpService: HttpService,
     private lsService: LocalStorageService,
-    private router: Router) {
-      this.url = urljoin(environment.apiUrl, '/api/auth');
-    }
+    private ssService: SessionStorageService,
+    private router: Router
+  ) {
+    this.url = urljoin(environment.apiUrl, '/api/auth');
+  }
   login(user: Partial<User>, remember: boolean = false) {
     if (remember) {
       this.lsService.set('email', user.email);
@@ -25,7 +30,16 @@ export class AuthService {
       this.lsService.remove('email');
     }
 
-    return this.httpService.post(this.url, user);
+    return this.httpService.post(this.url, user).pipe(
+      map((response) => {
+        debugger
+        this.saveStorage(
+          response.id,
+          response.token,
+          response.user
+        );
+      })
+    );
 
   }
   registerUser(user) {
@@ -43,8 +57,12 @@ export class AuthService {
     // });
   }
   logout() {
-    // debugger
-    // return this.afAuth.auth.signOut();
+    this.user = null;
+    this.token = null;
+    // this.menu = [];
+    this.ssService.remove('token');
+    this.ssService.remove('user');
+    this.router.navigate(['/login']);
   }
   // isAuth() {
   //   return this.afAuth.authState
@@ -55,5 +73,11 @@ export class AuthService {
 
   isAuth() {
   }
-
+  saveStorage(id: number, token: string, user: User) {
+    this.ssService.set('id', id);
+    this.ssService.set('token', token);
+    this.ssService.set('user', user);
+    this.user = user;
+    this.token = token;
+  }
 }
