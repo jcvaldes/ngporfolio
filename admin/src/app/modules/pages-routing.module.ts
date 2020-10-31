@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { UsersComponent } from './users/users.component';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './admin/users/users.module';
+import { RolesModule } from './admin/roles/roles.module';
 
 const routes: Routes = [
   {
@@ -13,7 +13,12 @@ const routes: Routes = [
   },
   {
     path: 'users',
-    loadChildren: () => import('./users/users.module').then(mod => mod.UsersModule)
+    loadChildren: () => import('./admin/users/users.module').then(mod => mod.UsersModule)
+    // canActivate: [LoginGuard],
+  },
+  {
+    path: 'roles',
+    loadChildren: () => import('./admin/roles/roles.module').then(mod => mod.RolesModule)
     // canActivate: [LoginGuard],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
