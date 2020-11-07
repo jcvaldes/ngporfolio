@@ -21,7 +21,7 @@ export class AuthService {
     private ssService: SessionStorageService,
     private router: Router
   ) {
-    this.url = urljoin(environment.apiUrl, '/api/auth');
+    this.url = urljoin(environment.apiUrl, 'auth');
   }
   login(user: Partial<User>, remember: boolean = false) {
     if (remember) {

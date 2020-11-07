@@ -17,9 +17,9 @@ export class AppComponent {
     });
   }
   navigationInterceptor(event: RouterEvent): void {
-    if (event instanceof NavigationStart) {
-      this.initScripts();
-    }
+    // if (event instanceof NavigationStart) {
+    //   this.initScripts();
+    // }
     if (event instanceof NavigationEnd) {
       this.initScripts();
     }

@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
     // Login and Recover Password
     // ==============================================================
     $('#to-recover').on('click', () => {
-      debugger
       $('#loginform').slideUp();
       $('#recoverform').fadeIn();
     });
