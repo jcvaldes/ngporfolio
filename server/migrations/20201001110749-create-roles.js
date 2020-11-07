@@ -9,7 +9,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       rolename: {
-        type: Sequelize.STRING(80)
+        type: Sequelize.STRING(20),
+        allowNull: false,
+        unique: true
+      },
+      description: {
+        type: Sequelize.STRING(80),
+        allowNull: true,
       },
       active: {
         type: Sequelize.BOOLEAN,
