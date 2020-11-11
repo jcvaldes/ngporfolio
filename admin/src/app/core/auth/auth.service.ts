@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import urljoin from 'url-join';
 import { Router } from '@angular/router';
-import { of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { of, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { HttpService } from '@core/services/http.service';
 import { LocalStorageService } from '@core/services/local-storage.service';
 import { environment } from '@env';
@@ -39,6 +39,8 @@ export class AuthService {
           response.user
         );
       })
+    ).pipe(
+      catchError(err => throwError(err))
     );
 
   }

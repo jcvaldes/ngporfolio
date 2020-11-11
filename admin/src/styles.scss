@@ -3,5 +3,37 @@
   border-top: 3px solid #4DC1EF;
 }
 
+.mat-success {
+  background-color: #3da745;
+  color: #fff;
+}
 
+.mat-info {
+  background-color: #3fa2b8;
+  color: #fff;
+}
 
+.mat-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.mat-warning {
+  background-color: #f7c10b;
+  color: #fff;
+}
+
+.mat-gray {
+  background-color: #6b747c;
+  color: #fff;
+}
+.mat-header-cell {
+  background-color: #488cc9;
+  font-family: monospace;
+  color: white;
+  font-weight: 900;
+  text-transform: uppercase;
+  button.mat-sort-header-button {
+    text-transform: uppercase;
+  }
+}
