@@ -41,3 +41,6 @@ Puede haber advertencias de que una libreria use commonjs y se puede apagar en e
       ],
 
 ```
+
+## Instalar angular material
+npm i -S -E @angular/material @angular/cdk

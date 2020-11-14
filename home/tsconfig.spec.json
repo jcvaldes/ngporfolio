@@ -2,6 +2,13 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "paths": {
+      "@app/*": ["src/app/*"],
+      "@env": ["src/environments/environment"],
+      "@core/*": ["src/app/core/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@ls": ["src/app/core/services/local-storage.service.ts"]
+    },
     "outDir": "./out-tsc/spec",
     "types": [
       "jasmine"

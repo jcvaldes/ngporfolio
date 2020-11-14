@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="d-flex justify-content-between">
-  <span>Nuevo Rol</span>
+  <span>{{form.controls['id'].value?"Modificar Rol":"Nuevo Rol"}}</span>
   <span class="fill-remaining-space"></span>
   <button class="btn-dialog-close" mat-stroked-button (click)="onClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
 </mat-toolbar>
