@@ -20,10 +20,10 @@ export class RoleDetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private httpService: HttpService,
   ) {
-      this.createForm();
-      if (data) {
-        this.populateForm(data);
-      }
+    this.createForm();
+    if (data) {
+      this.populateForm(data);
+    }
   }
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class RoleDetailComponent implements OnInit {
   }
   onSubmit() {
     const url = urljoin(environment.apiUrl, 'role')
-    if( this.form.valid ) {
+    if (this.form.valid) {
       this.httpService.post<Role>(url, this.form.value).subscribe(role => {
         this.swalService.success('Atención', 'El rol ha sido creado');
         this.onClose(true);
