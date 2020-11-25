@@ -10,5 +10,13 @@ ng update @angular/core @angular/cli
 ```
 
 ## Carga manteniendo el estado y solo actualiza lo que se modifica
-
+```
 ng s --hmr -o
+```
+
+## Lodash 
+agregamos lodash para manipular arrays
+
+```
+npm i -S -E lodash 
+```
