@@ -39,7 +39,6 @@ export class RoleListComponent implements OnInit {
     });
   }
   onEdit(row) {
-    debugger
     const dialogRef = this.dialog.open(
       RoleDetailComponent,
       this.dialogConfig(row)
@@ -51,13 +50,13 @@ export class RoleListComponent implements OnInit {
     });
   }
   onDelete(id) {
-    this.swalService.confirm('Atención', 'Estás por eliminar un rol?','warning', true).then((result) => {
+    this.swalService.confirm('Atención', 'Estás por eliminar un rol?', 'warning', true).then((result) => {
       if (result.value) {
         const url = urljoin(this.url, id.toString());
         this.httpService.delete(url).subscribe((resp: any) => {
           this.onLoadPage();
           this.swalService.success('Atención', 'El rol ha sido eliminado');
-        }, err  => {
+        }, err => {
           this.swalService.error('Atención', err);
         });
       }
@@ -75,7 +74,7 @@ export class RoleListComponent implements OnInit {
       debugger
       // this.dataSource = new MatTableDataSource(roles.rows) ;
       // forma optima
-      this.dataSource.data = roles.rows ;
+      this.dataSource.data = roles.rows;
     });
   }
 

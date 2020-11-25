@@ -5,7 +5,8 @@ import { HttpService } from '@core/services/http.service';
 import urljoin from 'url-join';
 import { environment } from '@env';
 import { SwalService } from '@core/services/swal.service';
-import { Role } from '../../../../shared/models/role.model';
+import { Role } from '@shared/models/role.model';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-role-detail',
@@ -14,12 +15,14 @@ import { Role } from '../../../../shared/models/role.model';
 })
 export class RoleDetailComponent implements OnInit {
   form: FormGroup;
+  url: string;
   constructor(
     private swalService: SwalService,
     private dialogRef: MatDialogRef<RoleDetailComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private httpService: HttpService,
   ) {
+    this.url = urljoin(environment.apiUrl, 'role');
     this.createForm();
     if (data) {
       this.populateForm(data);
@@ -41,18 +44,37 @@ export class RoleDetailComponent implements OnInit {
     });
   }
   onSubmit() {
-    const url = urljoin(environment.apiUrl, 'role')
     if (this.form.valid) {
-      this.httpService.post<Role>(url, this.form.value).subscribe(role => {
-        this.swalService.success('Atención', 'El rol ha sido creado');
-        this.onClose(true);
-      });
-
+      if (!this.form.get('id').value) {
+        this.httpService.post<Role>(this.url, this.form.value).subscribe(role => {
+          this.swalService.success('Atención', 'El rol ha sido creado');
+          this.onClose(true);
+        }, err => {
+          this.swalService.error(`:: ${err}`);
+        });
+      } else {
+        this.httpService.put<Role>(this.url, this.form.value).subscribe(role => {
+          this.swalService.success('Atención', 'El rol ha sido actualizado');
+          this.onClose(true);
+        }, err => {
+          this.swalService.error(`:: ${err}`);
+        });
+      }
     }
   }
   populateForm(data) {
-    this.form.get('id').setValue(data.id);
-    this.form.get('rolename').setValue(data.rolename);
-    this.form.get('description').setValue(data.description);
+    // this.form.get('id').setValue(data.id);
+    // this.form.get('rolename').setValue(data.rolename);
+    // this.form.get('description').setValue(data.description);
+    // Mejor manera de setear valores
+    // this.form.setValue(_.omit(data, ['createdAt', 'updatedAt', 'deletedAt']));
+    this.httpService
+      .getSingle<Role>(this.url, data.id)
+      .subscribe(({ role }) => {
+        debugger
+        // const { role } = data;
+        this.form.setValue(_.omit(role, ['createdAt', 'updatedAt', 'deletedAt']));
+      });
+
   }
 }

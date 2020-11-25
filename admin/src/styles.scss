@@ -1,6 +1,6 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
 .box-info {
-  border-top: 3px solid #4DC1EF;
+  border-top: 3px solid #4dc1ef;
 }
 
 .mat-success {
@@ -36,4 +36,7 @@
   button.mat-sort-header-button {
     text-transform: uppercase;
   }
+}
+mat-form-field {
+  width: 100%;
 }
