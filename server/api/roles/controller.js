@@ -25,10 +25,7 @@ class RolesController {
             error: 'Not Found',
           });
         } else {
-          res.status(200).json({
-            ok: true,
-            role,
-          });
+          res.status(200).json(role);
         }
       })
       .catch((err) => {
