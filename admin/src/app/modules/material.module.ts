@@ -6,6 +6,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 const modules = [
   MatButtonModule,
@@ -14,7 +15,8 @@ const modules = [
   MatDialogModule,
   MatIconModule,
   MatInputModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatSelectModule
 ];
 @NgModule({
   imports: modules,

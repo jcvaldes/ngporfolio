@@ -1,78 +1,75 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpService } from '@core/services/http.service';
 import urljoin from 'url-join';
 import { environment } from '@env';
 import { SwalService } from '@core/services/swal.service';
-import { Role } from '@shared/models/role.model';
+import { Skill } from '@shared/models/skill.model';
 import * as _ from 'lodash';
 
 @Component({
-  selector: 'app-role-detail',
-  templateUrl: './role-detail.component.html',
-  styleUrls: ['./role-detail.component.scss']
+  selector: 'app-skill-detail',
+  templateUrl: './skill-detail.component.html',
+  styleUrls: ['./skill-detail.component.scss']
 })
-export class RoleDetailComponent implements OnInit {
+export class SkillDetailComponent implements OnInit {
   form: FormGroup;
   url: string;
+  @Input() skill: Skill;
   constructor(
     private swalService: SwalService,
-    private dialogRef: MatDialogRef<RoleDetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
     private httpService: HttpService,
   ) {
-    this.url = urljoin(environment.apiUrl, 'role');
+    this.url = urljoin(environment.apiUrl, 'skill');
     this.createForm();
-    if (data) {
-      this.populateForm(data);
+    if (this.skill) {
+      this.populateForm(this.skill);
     }
   }
 
   ngOnInit(): void {
 
   }
-  onClose(refresh?) {
-    this.dialogRef.close(refresh);
+  onClear(): void {
+    this.form.reset();
   }
   createForm() {
     this.form = new FormGroup({
       id: new FormControl(null),
-      rolename: new FormControl(null, Validators.required),
-      description: new FormControl(null),
+      name: new FormControl(null, Validators.required),
+      skill: new FormControl(null),
       active: new FormControl(true),
     });
   }
   onSubmit() {
     if (this.form.valid) {
       if (!this.form.get('id').value) {
-        this.httpService.post<Role>(this.url, this.form.value).subscribe(role => {
-          this.swalService.success('Atención', 'El rol ha sido creado');
-          this.onClose(true);
+        this.httpService.post<Skill>(this.url, this.form.value).subscribe(skill => {
+          this.swalService.success('Atención', 'El skill ha sido creado');
         }, err => {
           this.swalService.error('Atención', `:: ${err}`);
         });
       } else {
-        this.httpService.put<Role>(this.url, this.form.value).subscribe(role => {
-          this.swalService.success('Atención', 'El rol ha sido actualizado');
-          this.onClose(true);
-        }, err => {
+        this.httpService.put<Skill>(this.url, this.form.value).subscribe(skill => {
+          this.swalService.success('Atención', 'El skill ha sido actualizado');
+      }, err => {
           this.swalService.error('Atención', `:: ${err}`);
         });
       }
     }
   }
-  populateForm(data) {
+  populateForm(skill) {
     // this.form.get('id').setValue(data.id);
     // this.form.get('rolename').setValue(data.rolename);
     // this.form.get('description').setValue(data.description);
     // Mejor manera de setear valores
     // this.form.setValue(_.omit(data, ['createdAt', 'updatedAt', 'deletedAt']));
     this.httpService
-      .getSingle<Role>(this.url, data.id)
-      .subscribe((role: Role) => {
-        // const { role } = data;
-        this.form.setValue(_.omit(role, ['createdAt', 'updatedAt', 'deletedAt']));
+      .getSingle<Skill>(this.url, skill.id)
+      .subscribe((skill: Skill) => {
+        // const { skill } = data;
+        this.form.setValue(_.omit(skill, ['createdAt', 'updatedAt', 'deletedAt']));
       });
 
   }

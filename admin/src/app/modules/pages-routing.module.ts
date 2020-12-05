@@ -21,6 +21,11 @@ const routes: Routes = [
     loadChildren: () => import('./admin/roles/roles.module').then(mod => mod.RolesModule)
     // canActivate: [LoginGuard],
   },
+  {
+    path: 'skills',
+    loadChildren: () => import('./public/skills/skills.module').then(mod => mod.SkillsModule)
+    // canActivate: [LoginGuard],
+  },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 

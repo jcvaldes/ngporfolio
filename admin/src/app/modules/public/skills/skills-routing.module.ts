@@ -1,8 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { RolesComponent } from './roles.component';
-import { RoleListComponent } from './role-list/role-list.component';
-import { RoleDetailComponent } from './role-detail/role-detail.component';
 import { SkillsComponent } from './skills.component';
 
 const routes: Routes = [
@@ -11,13 +8,6 @@ const routes: Routes = [
     component: SkillsComponent,
     // canActivate: [VerifyTokenGuard],
     data: { titulo: 'Gestión de Skills' },
-    children: [
-      {
-        path: '', component: SkillListComponent
-      }, {
-        path: 'new', component: SkillDetailComponent
-      }
-    ]
   }
 ];
 
@@ -25,4 +15,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RolesRoutingModule { }
+export class SkillsRoutingModule { }
