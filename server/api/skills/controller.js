@@ -4,9 +4,13 @@ class SkillsController {
   static Fetch(req, res) {
     db.Skill.findAndCountAll({
       order: [['id', 'ASC']],
+      include: [{
+        model: db.Skill,
+        as: 'parent'
+      }]
     })
-      .then((roles) => {
-        res.status(200).json(roles);
+      .then((skills) => {
+        res.status(200).json(skills);
       })
       .catch((err) => {
         res.status(400).json({
@@ -35,7 +39,9 @@ class SkillsController {
       });
   }
   static Create(req, res) {
-    db.Skill.create(req.body)
+    const { name, ParentId, active } = req.body;
+    const UserId = req.user.id;
+    db.Skill.create({name, ParentId, UserId, active})
       .then((skill) => {
         res.status(200).json({
           ok: true,

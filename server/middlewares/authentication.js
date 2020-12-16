@@ -1,6 +1,6 @@
 // verifico que el token sea valido
 const jwt = require('jsonwebtoken');
-const validRoles = require('../utils/validRoles');
+// const validRoles = require('../utils/validRoles');
 const node_env = process.env.NODE_ENV || 'development';
 const { config } = require('../config');
 const extractToken = function (req) {
@@ -37,7 +37,7 @@ exports.verifyToken = function(req, res, next) {
 // Verificar Admin
 exports.verifyAdmin = function(req, res, next) {
   const { user } = req;
-  if (user.role === validRoles.Admin) {
+  if (user.role === 'ADMIN_ROLE') {
     next();
     return;
   }
@@ -52,7 +52,7 @@ exports.verifyAdmin = function(req, res, next) {
 exports.verifyAdminOrSelfUser = function(req, res, next) {
   const { user } = req;
   const { id } = req.params;
-  if (user.role === validRoles.Admin && user.id === +id) {
+  if (user.role === 'ADMIN_ROLE' && user.id === +id) {
      return res.status(401).json({
       ok: false,
       message: 'El administrador no puede eliminarse a si mismo',

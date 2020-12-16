@@ -9,9 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      // 1:M
-      Skill.hasMany(models.Skill, {
-        foreignKey: 'ParentId'
+      // 1:1
+      // Skill.hasOne(models.Skill, {
+      //   foreignKey: 'ParentId',
+      //   as: 'parent'
+      // })
+      // 1:1 (inversa)
+      Skill.belongsTo(models.Skill, {
+        foreignKey: 'ParentId',
+        as: 'parent'
       })
       // M:1
       Skill.belongsTo(models.User, {
