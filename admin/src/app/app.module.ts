@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Modulos propios
@@ -11,6 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 // Mis Componentes
 import { AppComponent } from './app.component';
+import { TokenInterceptor } from './core/interptors/token.interceptor';
 @NgModule({
   declarations: [
     AppComponent
@@ -24,7 +25,13 @@ import { AppComponent } from './app.component';
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

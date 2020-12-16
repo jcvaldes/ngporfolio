@@ -23,7 +23,15 @@
                     Nombre
                   </mat-header-cell>
                   <mat-cell *matCellDef="let element">
-                    {{ element.name }}
+                    {{ element?.name }}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="parent">
+                  <mat-header-cell *matHeaderCellDef>
+                    Skill
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    {{ element.parent?.name  }}
                   </mat-cell>
                 </ng-container>
                 <ng-container matColumnDef="active">

@@ -22,6 +22,7 @@ export class AuthService {
     private router: Router
   ) {
     this.url = urljoin(environment.apiUrl, 'auth');
+    this.loadStorage();
   }
   login(user: Partial<User>, remember: boolean = false) {
     if (remember) {
@@ -81,5 +82,15 @@ export class AuthService {
     this.ssService.set('user', user);
     this.user = user;
     this.token = token;
+  }
+  loadStorage() {
+    const token = this.ssService.get('token');
+    if (token) {
+      this.token = token;
+      this.user = this.ssService.get('user');
+    } else {
+      this.token = '';
+      this.user = null;
+    }
   }
 }

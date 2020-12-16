@@ -13,7 +13,7 @@ import { SkillDetailComponent } from '../skill-detail/skill-detail.component';
   styleUrls: ['./skill-list.component.scss']
 })
 export class SkillListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'active', 'actions'];
+  displayedColumns: string[] = ['id', 'name', 'parent', 'active', 'actions'];
   dataSource = new MatTableDataSource();
   url: string;
   constructor(
