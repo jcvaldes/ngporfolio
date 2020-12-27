@@ -7,6 +7,7 @@ import { environment } from '@env';
 import { SwalService } from '@core/services/swal.service';
 import { Skill } from '@shared/models/skill.model';
 import * as _ from 'lodash';
+import { SkillsService } from '../skills.service';
 
 @Component({
   selector: 'app-skill-detail',
@@ -18,15 +19,19 @@ export class SkillDetailComponent implements OnInit {
   url: string;
   @Input() skill: Skill;
   @Output() submited = new EventEmitter();
+  validationType = {
+    name: [Validators.required],
+  }
   constructor(
     private swalService: SwalService,
-    private httpService: HttpService,
+    private skillsService: SkillsService,
   ) {
     this.url = urljoin(environment.apiUrl, 'skill');
     this.createForm();
-    if (this.skill) {
-      this.populateForm(this.skill);
-    }
+    skillsService.sendSkillSubjectObservable.subscribe(skill => {
+      debugger
+      this.populateForm(skill);
+    })
   }
 
   ngOnInit(): void {
@@ -39,15 +44,17 @@ export class SkillDetailComponent implements OnInit {
     this.form = new FormGroup({
       id: new FormControl(null),
       ParentId: new FormControl(null),
-      name: new FormControl(null, Validators.required),
+      name: new FormControl(null, this.validationType.name),
       active: new FormControl(true),
     });
   }
+  getErrorMessageForName() {
+    return this.form.get('name').hasError('required') ? 'requerido' : '';
+  }
   onSubmit() {
     if (this.form.valid) {
-      debugger
       if (!this.form.get('id').value) {
-        this.httpService.post<Skill>(this.url, this.form.value).subscribe(skill => {
+        this.skillsService.post<SkillsService>(this.url, this.form.value).subscribe(skill => {
           this.swalService.success('Atención', 'El skill ha sido creado');
           this.submited.emit();
           this.resetForm();
@@ -55,8 +62,9 @@ export class SkillDetailComponent implements OnInit {
           this.swalService.error('Atención', `:: ${err}`);
         });
       } else {
-        this.httpService.put<Skill>(this.url, this.form.value).subscribe(skill => {
+        this.skillsService.put<SkillsService>(this.url, this.form.value).subscribe(skill => {
           this.swalService.success('Atención', 'El skill ha sido actualizado');
+          this.submited.emit();
       }, err => {
           this.swalService.error('Atención', `:: ${err}`);
         });
@@ -64,21 +72,28 @@ export class SkillDetailComponent implements OnInit {
     }
   }
   resetForm() {
-    this.clearErrors();
     this.form.reset(
       { active: true },
       { emitEvent: false }
-    );
-
+      );
+    this.clearErrors();
   }
   clearErrors() {
-    debugger
-    const properties = Object.keys(this.form.controls);
-    for (let i = 0; i < properties.length; i++) {
-      this.form.get(properties[i]).markAsUntouched();
-      this.form.get(properties[i]).markAsPristine();
-      this.form.get(properties[i]).updateValueAndValidity();
-    }
+
+    // const properties = Object.keys(this.form.controls);
+    // for (let i = 0; i < properties.length; i++) {
+    //   this.form.get(properties[i]).markAsUntouched();
+    //   this.form.get(properties[i]).markAsPristine();
+    //   this.form.get(properties[i]).updateValueAndValidity();
+    // }
+    // this.form.get('name').markAsUntouched();
+    this.form.get('name').markAsPristine();
+    this.form.setErrors(null);
+    this.setValidators();
+    this.form.get('name').updateValueAndValidity();
+  }
+  setValidators() {
+    this.form.get('name').setValidators(this.validationType.name);
   }
   populateForm(skill) {
     // this.form.get('id').setValue(data.id);
@@ -86,11 +101,15 @@ export class SkillDetailComponent implements OnInit {
     // this.form.get('description').setValue(data.description);
     // Mejor manera de setear valores
     // this.form.setValue(_.omit(data, ['createdAt', 'updatedAt', 'deletedAt']));
-    this.httpService
+    this.skillsService
       .getSingle<Skill>(this.url, skill.id)
       .subscribe((skill: Skill) => {
         // const { skill } = data;
-        this.form.setValue(_.omit(skill, ['createdAt', 'updatedAt', 'deletedAt']));
+        // this.form.get('id').setValue(skill.id)
+        // this.form.get('name').setValue()
+        // this.form.get('description').setValue()
+
+        this.form.setValue(_.omit(skill, ['UserId', 'createdAt', 'updatedAt', 'deletedAt']));
       });
 
   }

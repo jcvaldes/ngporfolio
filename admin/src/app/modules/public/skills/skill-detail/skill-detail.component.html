@@ -15,14 +15,10 @@
               required
             />
             <mat-error
-              *ngIf="
-                (form.get('name').touched ||
-                  form.get('name').dirty) &&
-                form.get('name').hasError('required')
-              "
-            >
-              requerido
+              *ngIf="form.get('name').invalid && form.get('name').touched">
+              {{getErrorMessageForName()}}
             </mat-error>
+
           </mat-form-field>
         </div>
       </div>

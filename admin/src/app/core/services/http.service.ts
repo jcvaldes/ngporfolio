@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class HttpService {
   // tslint:disable-next-line: variable-name
-  constructor(protected http: HttpClient) { }
+  constructor(public http: HttpClient) { }
   get<T>(url): Observable<any> {
     return this.http.get(url).pipe(
       catchError(err => observableThrowError(err))

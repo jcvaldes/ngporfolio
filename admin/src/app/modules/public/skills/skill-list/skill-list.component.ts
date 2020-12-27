@@ -6,6 +6,8 @@ import { environment } from '@env';
 import urljoin from 'url-join';
 import { SwalService } from '@core/services/swal.service';
 import { SkillDetailComponent } from '../skill-detail/skill-detail.component';
+import { SkillsService } from '../skills.service';
+import { Skill } from '../../../../shared/models/skill.model';
 
 @Component({
   selector: 'app-skill-list',
@@ -18,8 +20,8 @@ export class SkillListComponent implements OnInit {
   url: string;
   constructor(
     private dialog: MatDialog,
-    private httpService: HttpService,
-    private swalService: SwalService
+    private skillsService: SkillsService,
+    private swalService: SwalService,
   ) {
     this.url = urljoin(environment.apiUrl, 'skill');
   }
@@ -38,22 +40,14 @@ export class SkillListComponent implements OnInit {
       }
     });
   }
-  onEdit(row) {
-    const dialogRef = this.dialog.open(
-      SkillDetailComponent,
-      this.dialogConfig(row)
-    );
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.onLoadPage();
-      }
-    });
+  onEdit(skill: Skill) {
+     this.skillsService.sendSkill(skill);
   }
   onDelete(id) {
     this.swalService.confirm('Atención', 'Estás por eliminar un rol?', 'warning', true).then((result) => {
       if (result.value) {
         const url = urljoin(this.url, id.toString());
-        this.httpService.delete(url).subscribe((resp: any) => {
+        this.skillsService.delete(url).subscribe((resp: any) => {
           this.onLoadPage();
           this.swalService.success('Atención', 'El rol ha sido eliminado');
         }, err => {
@@ -70,7 +64,7 @@ export class SkillListComponent implements OnInit {
     return dialogConfig;
   }
   onLoadPage() {
-    this.httpService.get(this.url).subscribe(skills => {
+    this.skillsService.get(this.url).subscribe(skills => {
       debugger
       // this.dataSource = new MatTableDataSource(skills.rows) ;
       // forma optima
