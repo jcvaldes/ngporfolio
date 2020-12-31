@@ -8,13 +8,17 @@ import { HeroComponent } from './shared/components/hero/hero.component';
 import { FooterComponent } from './core/footer/footer.component';
 
 import { HttpClientModule } from '@angular/common/http';
+import { SkillCardComponent } from './shared/skill-card/skill-card.component';
+import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HeroComponent,
-    FooterComponent
+    FooterComponent,
+    SkillCardComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

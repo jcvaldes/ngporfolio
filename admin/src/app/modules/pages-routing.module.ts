@@ -26,7 +26,7 @@ const routes: Routes = [
   {
     path: 'skills',
     loadChildren: () => import('./public/skills/skills.module').then(mod => mod.SkillsModule),
-    canActivate: [LoginGuard],
+    canActivate: [VerifyTokenGuard],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];

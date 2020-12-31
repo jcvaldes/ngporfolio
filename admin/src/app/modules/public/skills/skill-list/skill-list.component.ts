@@ -41,6 +41,7 @@ export class SkillListComponent implements OnInit {
     });
   }
   onEdit(skill: Skill) {
+    debugger
      this.skillsService.sendSkill(skill);
   }
   onDelete(id) {
