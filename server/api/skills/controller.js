@@ -3,7 +3,7 @@ import { Sequelize } from '../../models';
 class SkillsController {
   static Fetch(req, res) {
     db.Skill.findAndCountAll({
-      order: [['id', 'ASC']],
+      order: [['id', 'ASC'], ['ParentId', 'ASC']],
       include: [{
         model: db.Skill,
         as: 'parent'
@@ -94,5 +94,4 @@ class SkillsController {
       });
   }
 }
-
 export default SkillsController;
