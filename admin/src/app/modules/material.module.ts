@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
-
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 const modules = [
   MatButtonModule,
   MatTableModule,
@@ -16,7 +16,8 @@ const modules = [
   MatIconModule,
   MatInputModule,
   MatSlideToggleModule,
-  MatSelectModule
+  MatSelectModule,
+  NgxMatSelectSearchModule
 ];
 @NgModule({
   imports: modules,

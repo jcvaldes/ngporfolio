@@ -6,13 +6,15 @@ import { SkillListComponent } from './skill-list/skill-list.component';
 import { SkillDetailComponent } from './skill-detail/skill-detail.component';
 import { MaterialModule } from '../../material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SkillSearchComponent } from './skill-search/skill-search.component';
 
 
 @NgModule({
   declarations: [
     SkillsComponent,
     SkillListComponent,
-    SkillDetailComponent
+    SkillDetailComponent,
+    SkillSearchComponent,
   ],
   imports: [
     CommonModule,

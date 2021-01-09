@@ -29,7 +29,6 @@ export class SkillDetailComponent implements OnInit {
     this.url = urljoin(environment.apiUrl, 'skill');
     this.createForm();
     skillsService.sendSkillSubjectObservable.subscribe(skill => {
-      debugger
       this.populateForm(skill);
     })
   }
@@ -54,6 +53,7 @@ export class SkillDetailComponent implements OnInit {
   onSubmit() {
     if (this.form.valid) {
       if (!this.form.get('id').value) {
+        debugger
         this.skillsService.post<SkillsService>(this.url, this.form.value).subscribe(skill => {
           this.swalService.success('Atención', 'El skill ha sido creado');
           this.submited.emit();

@@ -20,7 +20,6 @@ export class TokenInterceptor implements HttpInterceptor {
     if (this.router.url.endsWith('login') || this.router.url.endsWith('renewtoken')) {
       return next.handle(request);
     }
-    debugger
     const auth = this.injector.get<AuthService>(AuthService as Type<AuthService>);
     const token = auth.user && auth.token ? auth.token : '';
     request = request.clone({
