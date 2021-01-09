@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from '@core/services/http.service';
 import urljoin from 'url-join';
 import { environment } from '@env';
-
+import convertNestedChildren from '@shared/utils/convertNestedChildren'
 @Component({
   selector: 'app-skill-card',
   templateUrl: './skill-card.component.html',
@@ -13,10 +13,29 @@ export class SkillCardComponent implements OnInit {
   skills: any[] = [];
   constructor(private httpService: HttpService) {
     httpService.get(this.url).subscribe(data => {
-      this.skills = data.rows;
+      // let arr = data.rows.map(item => {
+      //   if (!item.ParentId) {
+      //     item.ParentId = 0
+      //   }
+      //   return item;
+      // })
+      this.skills = convertNestedChildren(data.rows, 0);
     })
   }
   ngOnInit(): void {
   }
-
 }
+
+// function getNestedChildren(arr, parent) {
+//   let nested = []
+//   for (let i in arr) {
+//     if (arr[i].ParentId == parent) {
+//       let children = getNestedChildren(arr, arr[i].id)
+//       if (children.length) {
+//         arr[i].children = children
+//       }
+//       nested.push(arr[i])
+//     }
+//   }
+//   return nested
+// }

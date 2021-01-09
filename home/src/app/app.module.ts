@@ -10,6 +10,8 @@ import { FooterComponent } from './core/footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SkillCardComponent } from './shared/skill-card/skill-card.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FeaturedProjectsComponent } from './shared/components/featured-projects/featured-projects.component';
+import { TestimonialsComponent } from './shared/components/testimonials/testimonials.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HomeComponent } from './pages/home/home.component';
     HeroComponent,
     FooterComponent,
     SkillCardComponent,
-    HomeComponent
+    HomeComponent,
+    FeaturedProjectsComponent,
+    TestimonialsComponent
   ],
   imports: [
     BrowserModule,
