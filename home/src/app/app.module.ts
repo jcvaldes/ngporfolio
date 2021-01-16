@@ -12,6 +12,7 @@ import { SkillCardComponent } from './shared/skill-card/skill-card.component';
 import { HomeComponent } from './pages/home/home.component';
 import { FeaturedProjectsComponent } from './shared/components/featured-projects/featured-projects.component';
 import { TestimonialsComponent } from './shared/components/testimonials/testimonials.component';
+import { LetsTalkComponent } from './shared/components/lets-talk/lets-talk.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TestimonialsComponent } from './shared/components/testimonials/testimon
     SkillCardComponent,
     HomeComponent,
     FeaturedProjectsComponent,
-    TestimonialsComponent
+    TestimonialsComponent,
+    LetsTalkComponent
   ],
   imports: [
     BrowserModule,
