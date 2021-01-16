@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import _ from 'lodash';
-import { ComboSearchComponent } from '@shared/components/combo-search/combo-search.component';
+import { ComboSearchComponent } from '@core/abstracts/combo-search.component';
 import urlJoin from 'url-join';
 import { environment } from '@env';
 import { Skill } from '@shared/models/skill.model';
