@@ -13,18 +13,14 @@ import { HomeComponent } from './pages/home/home.component';
 import { FeaturedProjectsComponent } from './shared/components/featured-projects/featured-projects.component';
 import { TestimonialsComponent } from './shared/components/testimonials/testimonials.component';
 import { LetsTalkComponent } from './shared/components/lets-talk/lets-talk.component';
+import { UnavalilableComponent } from './pages/unavalilable/unavalilable.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent,
-    HeroComponent,
-    FooterComponent,
-    SkillCardComponent,
     HomeComponent,
-    FeaturedProjectsComponent,
-    TestimonialsComponent,
-    LetsTalkComponent
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
