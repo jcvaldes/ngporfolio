@@ -12,9 +12,11 @@ import { AppRoutingModule } from './app-routing.module';
 // Mis Componentes
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './core/interptors/token.interceptor';
+import { NotFoundComponent } from './core/not-found/not-found.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
