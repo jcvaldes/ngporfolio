@@ -15,22 +15,16 @@ import { SeassonJobsComponent } from './shared/components/seasson-jobs/seasson-j
 import { TestimonialsComponent } from './shared/components/testimonials/testimonials.component';
 import { NewsLastestComponent } from './shared/components/news-lastest/news-lastest.component';
 import { BrandComponent } from './shared/components/brand/brand.component';
+import { NotFoundComponent } from './core/not-found/not-found.component';
+import { HomeComponent } from './pages/home/home.component';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    HeroComponent,
-    FeatureComponent,
-    FeaturedEmployerComponent,
-    JobLocationComponent,
-    FunfactComponent,
-    CtaComponent,
-    SeassonJobsComponent,
-    TestimonialsComponent,
-    NewsLastestComponent,
-    BrandComponent,
-    FooterComponent
+    FooterComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -6,8 +6,10 @@
         <!--Logo start-->
         <div class="col-xl-2 col-lg-2 col-12">
           <div class="logo">
-            <a href="index.html"
-              ><img src="assets/images/devkingos-logo-light.png" alt=""
+            <a routerLink="/"
+              ><img
+                src="assets/images/devkingos-logo-dark.png"
+                alt="devkingos.com"
             /></a>
           </div>
         </div>
@@ -18,117 +20,31 @@
           <nav class="main-menu">
             <ul>
               <li>
-                <a href="index.html">Home <small class="icon-arrow"></small></a>
-                <ul class="sub-menu">
-                  <li><a href="index.html">Home V1</a></li>
-                  <li><a href="index-2.html">Home V2</a></li>
-                  <li><a href="index-3.html">Home V3</a></li>
-                  <li><a href="index-4.html">Home V4</a></li>
-                </ul>
+                <a routerLink="/jobs" routerLinkActive>
+                  <span class="label-status hot">hot</span>
+                  Trabajos
+                </a>
               </li>
               <li>
-                <a href="job-listing.html"
-                  ><span class="label-status hot">hot</span>Jobs
-                  <small class="icon-arrow"></small
-                ></a>
-                <ul class="sub-menu">
-                  <li><a href="job-listing.html">Jobs Listing</a></li>
-                  <li><a href="job-with-map.html">Jobs With Map</a></li>
-                  <li>
-                    <a href="job-details.html"
-                      >Job Detail <small class="icon-arrow"></small
-                    ></a>
-                    <ul class="sub-menu">
-                      <li><a href="job-details.html">Job Detail V1</a></li>
-                      <li><a href="job-details-two.html">Job Detail V2</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                <a routerLink="/candidates" routerLinkActive>
+                  <span class="label-status new">nuevo</span>
+                  Candidatos
+                </a>
               </li>
               <li>
-                <a href="candidates-listing.html"
-                  ><span class="label-status new">new</span> Candidates
-                  <small class="icon-arrow"></small
-                ></a>
-                <ul class="sub-menu">
-                  <li>
-                    <a href="candidates-listing.html">Candidates Listing</a>
-                  </li>
-                  <li>
-                    <a href="candidate-details.html"
-                      >Candidate Detail <small class="icon-arrow"></small
-                    ></a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="candidate-details.html"
-                          >Candidate Details V1</a
-                        >
-                      </li>
-                      <li>
-                        <a href="candidate-details-two.html"
-                          >Candidate Details V2</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                <a routerLink="/recruiters" routerLinkActive>Reclutadores</a>
               </li>
               <li>
-                <a href="index.html#"
-                  >Employers <small class="icon-arrow"></small
-                ></a>
-                <ul class="sub-menu">
-                  <li><a href="employer-listing.html">Employers Listing</a></li>
-                  <li>
-                    <a href="employer-details.html"
-                      >Employer Details <small class="icon-arrow"></small
-                    ></a>
-                    <ul class="sub-menu">
-                      <li>
-                        <a href="employer-details.html">Employer Detail V1</a>
-                      </li>
-                      <li>
-                        <a href="employer-details-two.html"
-                          >Employer Detail V2</a
-                        >
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
+                <a routerLink="/employers">Empleadores</a>
               </li>
               <li>
-                <a href="blog.html">Blog <small class="icon-arrow"></small></a>
-                <ul class="sub-menu">
-                  <li><a href="blog-details.html">Single Post</a></li>
-                </ul>
+                <a routerLink="/blog">Blog</a>
               </li>
               <li>
-                <a href="index.html#"
-                  >Pages <small class="icon-arrow"></small
-                ></a>
-                <ul class="sub-menu">
-                  <li><a href="about.html">About us</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                  <li><a href="faq.html">FAQS</a></li>
-                  <li><a href="pricing.html">Pricing & Plan</a></li>
-                  <li><a href="login-register.html">Login & Register</a></li>
-                  <li><a href="dashboard.html">Dashboard</a></li>
-                  <li><a href="404.html">404 Error</a></li>
-                  <li>
-                    <a href="shop.html"
-                      >Shop <small class="icon-arrow"></small
-                    ></a>
-                    <ul class="sub-menu">
-                      <li><a href="shop.html">Shop</a></li>
-                      <li>
-                        <a href="product-details.html">Product Details</a>
-                      </li>
-                      <li><a href="cart.html">Cart</a></li>
-                      <li><a href="checkout.html">Checkout</a></li>
-                      <li><a href="wishlist.html">Wishlist</a></li>
-                    </ul>
-                  </li>
-                </ul>
+                <a routerLink="/pricing" routerLinkActive>Precios y Planes</a>
+              </li>
+              <li>
+                <a routerLink="/contact">Contacto</a>
               </li>
             </ul>
           </nav>
@@ -178,7 +94,7 @@
                     <ul class="icon-list justify-content-start">
                       <li class="popup-mobile-click">
                         <a (click)="menuMobile()"
-                          ><i class="lnr lnr-menu" ></i
+                          ><i class="lnr lnr-menu"></i
                         ></a>
                       </li>
                     </ul>
@@ -202,7 +118,7 @@
                     <ul class="icon-list justify-content-end">
                       <li>
                         <div class="header-cart-icon">
-                          <a href="index.html#" class="header-search-toggle"
+                          <a routerLink="/business" class="header-search-toggle"
                             ><i class="lnr lnr-magnifier"></i
                           ></a>
                         </div>
@@ -242,7 +158,7 @@
     <div class="menu-content">
       <ul class="menulist object-custom-menu">
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Home</span></a>
+          <a routerLink="/business"><span>Home</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
@@ -262,7 +178,7 @@
         </li>
 
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Jobs</span></a>
+          <a routerLink="/business"><span>Trabajos</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
@@ -282,7 +198,7 @@
         </li>
 
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Candidates</span></a>
+          <a routerLink="/business"><span>Candidates</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
@@ -305,7 +221,7 @@
         </li>
 
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Employers</span></a>
+          <a routerLink="/business"><span>Employers</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
@@ -326,11 +242,11 @@
         </li>
 
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Blog</span></a>
+          <a routerLink="/business"><span>Blog</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
-              <a href="blog.html"><span>Blog</span></a>
+              <a routerLink="/blog"><span>Blog</span></a>
             </li>
             <li>
               <a href="blog-details.html"><span>Blog Details</span></a>
@@ -340,7 +256,7 @@
         </li>
 
         <li class="has-mega-menu">
-          <a href="index.html#"><span>Pages</span></a>
+          <a routerLink="/business"><span>Pages</span></a>
           <!-- Start Dropdown Menu -->
           <ul class="object-submenu">
             <li>
@@ -402,7 +318,7 @@
         <a
           class="toggle-btn toggle-btn-js"
           data-target="#job-list-mobile-id"
-          href="index.html#"
+          routerLink="/business"
         >
           <span><i class="lnr lnr-list"></i></span>
           <span class="text">Jobs list</span>
@@ -418,7 +334,7 @@
         <a
           class="toggle-btn-two toggle-btn-js"
           data-target="#notifications-mobile-id"
-          href="index.html#"
+          routerLink="/business"
         >
           <span><i class="lnr lnr-alarm"></i></span>
           <span class="text">Notifications</span>
@@ -443,7 +359,7 @@
         <i class="lnr lnr-list"></i>
         <h3>All Jobs list</h3>
       </div>
-      <a class="view-all" href="index.html#">See all jobs</a>
+      <a class="view-all" routerLink="/business">See all jobs</a>
     </div>
     <div class="content-popup-scroll">
       <ul class="list-item">
@@ -506,7 +422,7 @@
         <i class="lnr lnr-list"></i>
         <h3>All Notifications</h3>
       </div>
-      <a class="view-all" href="index.html#">See all jobs</a>
+      <a class="view-all" routerLink="/business">See all jobs</a>
     </div>
     <div class="content-popup-scroll">
       <ul class="list-item">
