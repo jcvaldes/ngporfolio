@@ -20,13 +20,13 @@ class TeamsController {
     db.Team.findOne({
       where: { id },
     })
-      .then((skill) => {
-        if (skill === 0) {
+      .then((teams) => {
+        if (teams === 0) {
           res.status(404).json({
             error: 'Not Found',
           });
         } else {
-          res.status(200).json(skill);
+          res.status(200).json(teams);
         }
       })
       .catch((err) => {
@@ -36,13 +36,11 @@ class TeamsController {
       });
   }
   static Create(req, res) {
-    const { name, ParentId, active } = req.body;
-    const UserId = req.user.id;
-    db.Team.create({name, ParentId, UserId, active})
-      .then((skill) => {
+    db.Team.create(req.body)
+      .then((team) => {
         res.status(200).json({
           ok: true,
-          skill,
+          team,
         });
       })
       .catch(Sequelize.ValidationError, (msg) => {
@@ -54,11 +52,13 @@ class TeamsController {
           .json({ message: 'RESPONSESDB_CONNECTION_ERROR.message' });
       });
   }
+
+  
   static Update(req, res) {
     db.Team.update(req.body, {
       where: { id: req.body.id },
     })
-      .then((skill) => {
+      .then((team) => {
         res.status(201).json({
           ok: true,
         });
