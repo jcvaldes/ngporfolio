@@ -28,6 +28,16 @@ const routes: Routes = [
     loadChildren: () => import('./public/skills/skills.module').then(mod => mod.SkillsModule),
     canActivate: [VerifyTokenGuard],
   },
+  {
+    path: 'testimonials',
+    loadChildren: () => import('./public/testimonials/testimonials.module').then(mod => mod.TestimonialsModule),
+    //canActivate: [VerifyTokenGuard]
+  },
+  {
+    path: 'teams',
+    loadChildren: () => import('./public/teams/teams.module').then(mod => mod.TeamsModule),
+    //canActivate: [VerifyTokenGuard]
+  },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
 ];
 
