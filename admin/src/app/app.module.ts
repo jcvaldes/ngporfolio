@@ -13,6 +13,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TokenInterceptor } from './core/interptors/token.interceptor';
 import { NotFoundComponent } from './core/not-found/not-found.component';
+import { environment } from '../environments/environment.prod';
+import { AngularFireModule } from '@angular/fire';
+import { UploaderComponent } from './shared/components/uploader/uploader.component';
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +30,13 @@ import { NotFoundComponent } from './core/not-found/not-found.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      progressBar: true,
+    }),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     {

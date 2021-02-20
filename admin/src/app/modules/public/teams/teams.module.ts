@@ -6,6 +6,8 @@ import { TeamsComponent } from './teams.component';
 import { TeamListComponent } from './team-list/team-list.component';
 import { MaterialModule } from '../../material.module';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+import { SharedModule } from '../../../shared/shared.module';
 
 
 @NgModule({
@@ -15,7 +17,8 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
     TeamsRoutingModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class TeamsModule { }

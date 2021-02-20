@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   createForms() {
     const email = this.lsService.get('email');
     this.form = new FormGroup({
-      email: new FormControl(email ? email : null, Validators.required),
+      email: new FormControl(email ? email : 'idevkingos@gmail.com', Validators.required),
       password: new FormControl('123456', Validators.required),
       remember: new FormControl(email ? true : false )
     });

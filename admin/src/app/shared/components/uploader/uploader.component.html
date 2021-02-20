@@ -1,0 +1,18 @@
+<div class="dropzone"
+     dropzone
+     (hovered)="toggleHover($event)"
+     (dropped)="onDrop($event)"
+     [class.hovering]="isHovering">
+     <h3>Selecciona una Imagen</h3>
+     <p>Arrastrar y Soltar una Foto jpg o png (200kb max)</p>
+     <i class="fas fa-cloud-upload-alt fa-3x"></i>
+
+</div>
+<div *ngFor="let file of files">
+  <upload-task [file]="file" [folder]="folder"></upload-task>
+</div>
+<!-- <mat-form-field>
+  <ngx-mat-file-input #file formControlName="file" (change)="selectFile($event.target.files[0])"
+    placeholder="Selecciona archivo (jpg, png)" [accept]="'.jpg, png'"></ngx-mat-file-input>
+  <mat-icon matSuffix>folder</mat-icon>
+</mat-form-field> -->

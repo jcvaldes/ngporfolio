@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class TeamsService extends HttpService {
   private sendTeamSubject = new Subject<Team>(); //permite crear observable
   sendTeamSubjectObservable = this.sendTeamSubject.asObservable();
+
   constructor(public http: HttpClient) {
     super(http);
   }
@@ -17,4 +18,5 @@ export class TeamsService extends HttpService {
     // similar al emit del EventEmitter
     this.sendTeamSubject.next(team);
   }
+
 }

@@ -1,0 +1,41 @@
+<div *ngIf="upfbSvc.percentage | async as pct">
+  <progress [value]="pct" min="0" max="100"></progress>
+  {{ pct | number }}%
+</div>
+<div *ngIf="upfbSvc.snapshot | async as snap">
+  {{ snap.bytesTransferred }} of {{ snap.totalBytes }}
+
+  <div *ngIf="upfbSvc.downloadURL as url">
+    <img class="img-thumbnail imageUploaded" [src]="url" />
+  </div>
+  <section>
+    <div class="flex-container">
+      <div class="button-row">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="upfbSvc.task.pause()"
+          [disabled]="!isActive(snap)"
+        >
+          Pausar
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          (click)="upfbSvc.task.cancel()"
+          [disabled]="!isActive(snap)"
+        >
+          Cancelar
+        </button>
+        <button
+          mat-raised-button
+          (click)="upfbSvc.task.resume()"
+          [disabled]="!(snap?.state === 'paused')"
+        >
+          Reanudar
+        </button>
+        <a mat-raised-button *ngIf="upfbSvc.downloadURL" [href]="upfbSvc.downloadURL" target="_blank" rel="noopener">Descargar Imagen</a>
+      </div>
+    </div>
+  </section>
+</div>
