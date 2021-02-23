@@ -7,7 +7,7 @@ import urljoin from 'url-join';
 import { SwalService } from '@core/services/swal.service';
 import { SkillDetailComponent } from '../skill-detail/skill-detail.component';
 import { SkillsService } from '../skills.service';
-import { Skill } from '../../../../shared/models/skill.model';
+import { Skill } from '@shared/models/skill.model';
 
 @Component({
   selector: 'app-skill-list',

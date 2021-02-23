@@ -21,6 +21,7 @@ export class UploaderComponent {
   }
 
   onDrop(files: FileList) {
+    debugger
     this.files = [];
     if (files.length == this.maxlength) {
       for (let i = 0; i < files.length; i++) {

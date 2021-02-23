@@ -5,7 +5,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 
 import { Subject, Observable, of } from 'rxjs';
-import urlJoin from 'url-join';
+import urljoin from 'url-join';
 import { Upload } from '../../shared/components/uploader/upload.model';
 import { tap, finalize, take } from 'rxjs/operators';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
@@ -25,7 +25,7 @@ export class UploadFbService {
   percentage: Observable<number>;
   constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
   set folder(value) {
-    this._folder = urlJoin(this._folder, value);
+    this._folder = urljoin(this._folder, value);
   }
   get folder() {
     return this._folder;

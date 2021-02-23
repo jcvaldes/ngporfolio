@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import _ from 'lodash';
 import { ComboSearchComponent } from '@core/abstracts/combo-search.component';
-import urlJoin from 'url-join';
+import urljoin from 'url-join';
 import { environment } from '@env';
 import { Skill } from '@shared/models/skill.model';
 import { HttpService } from '@core/services/http.service';
@@ -13,7 +13,7 @@ import { HttpService } from '@core/services/http.service';
 export class SkillSearchComponent extends ComboSearchComponent<Skill> {
   selected: string;
   constructor(public httpService: HttpService ) {
-    super(httpService, urlJoin(environment.apiUrl, 'skill'), true);
+    super(httpService, urljoin(environment.apiUrl, 'skill'), true);
   }
 
   onSelectionChange(evt) {

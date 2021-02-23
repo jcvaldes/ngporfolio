@@ -34,8 +34,13 @@ const routes: Routes = [
     //canActivate: [VerifyTokenGuard]
   },
   {
-    path: 'teams',
+    path: 'team',
     loadChildren: () => import('./public/teams/teams.module').then(mod => mod.TeamsModule),
+    //canActivate: [VerifyTokenGuard]
+  },
+  {
+    path: 'portfolio',
+    loadChildren: () => import('./public/portfolio/portfolio.module').then(mod => mod.PortfolioModule),
     //canActivate: [VerifyTokenGuard]
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
